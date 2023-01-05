@@ -1,0 +1,18 @@
+<div class="p-3">
+  <div>
+    <h1>Departments</h1>
+  </div>
+  <form class="row g-3">
+    <div class="col-auto">
+      <mat-form-field appearance="outline">
+        <mat-label>Category Name</mat-label>
+        <input matInput placeholder="Name" [formControl]="name">
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="col-auto">
+      <button mat-raised-button color="primary" (click)="onSave()">Add Department</button>
+    </div>
+  </form>
+
+</div>
