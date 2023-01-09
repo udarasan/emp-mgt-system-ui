@@ -1,0 +1,32 @@
+
+<div class="login-page">
+  <mat-card class="mat-elevation-z12">
+    <mat-card-title style="text-align:center; color:#00759C">User Login</mat-card-title>
+        <mat-card-content>
+          <form>
+            <mat-form-field>
+              <input matInput formControlName="username" placeholder="Username" ngDefaultControl>
+              <mat-icon matSuffix style="color: #00759C">email</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="password" placeholder="Password" ngDefaultControl>
+              <mat-icon matSuffix style="color: #00759C">lock</mat-icon>
+            </mat-form-field>
+            <mat-checkbox>Remember Me!</mat-checkbox>
+            <button
+              mat-raised-button
+              color="primary"
+              class="login-button" (click)="login()">
+              Sign In
+            </button>
+
+            <button
+              mat-raised-button
+              class="login-button" [routerLink]="'../homePage'">
+              Back to Home
+            </button>
+
+          </form>
+        </mat-card-content>
+  </mat-card>
+</div>

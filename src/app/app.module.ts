@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DepartmentComponent } from './department/department.component';
 import { EmployeeComponent } from './employee/employee.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -26,6 +26,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatTableModule} from "@angular/material/table";
 import { EmployeeEditDialogComponent } from './employee/componets/employee-edit-dialog/employee-edit-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import {MatDialogModule} from "@angular/material/dialog";
         MatTableModule,
         MatDialogModule,
         FormsModule,
+        MatCheckboxModule,
     ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
