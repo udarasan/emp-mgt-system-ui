@@ -6,6 +6,8 @@ import {FormControl} from "@angular/forms";
 import {EmployeeService} from "../services/employee.service";
 import {DepartmentService} from "../services/department.service";
 import {Subscription} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {EmployeeEditDialogComponent} from "./componets/employee-edit-dialog/employee-edit-dialog.component";
 
 @Component({
   selector: 'app-employee',
@@ -13,9 +15,10 @@ import {Subscription} from "rxjs";
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit{
-  displayedColumns: string[] = [ 'name', 'department', 'address','city','country','email','mobile','dob','doj'];
+  displayedColumns: string[] = [ 'action','name', 'department', 'address','city','country','email','mobile','dob','doj','id'];
   dataSource! :any[];
-  private allItemSub!: Subscription;
+
+  id=new FormControl();
   name = new FormControl();
   department= new FormControl();
   email= new FormControl();
@@ -28,7 +31,9 @@ export class EmployeeComponent implements OnInit{
 
   departments!:DepartmentDTO[];
   employees!:EmployeeDTOList[];
-  constructor(private employeeService:EmployeeService,private departmentService:DepartmentService) {
+
+  selectedValue!: String;
+  constructor(private employeeService:EmployeeService,private departmentService:DepartmentService,public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -56,11 +61,37 @@ export class EmployeeComponent implements OnInit{
     })
   }
   onSave() {
-    this.employeeService.add(new EmployeeDTO(this.name.value,this.department.value,this.email.value,this.mobile.value,this.dob.value,this.city.value,this.doj.value,this.country.value,this.address.value)).subscribe((res: any) => {
+    this.employeeService.add(new EmployeeDTO(this.name.value,this.selectedValue,this.email.value,this.mobile.value,this.dob.value,this.city.value,this.doj.value,this.country.value,this.address.value)).subscribe((res: any) => {
       console.log(this.name)
       if (res.code == '00') {
       }
+      this.loadTable()
 
+    });
+  }
+
+  Edit(row:any) {
+
+  }
+  Delete(row:any) {
+
+    this.employeeService.delete(row._id).subscribe((res: any) => {
+      console.log(this.name)
+      this.loadTable();
+      if (res.code == '00') {
+      }
+
+    });
+  }
+
+  openDialog(row:any) {
+    const dialogRef = this.dialog.open(EmployeeEditDialogComponent, {
+      data: {id: row._id, name: row.name,department:row.department,address:row.address,city:row.city,country:row.country,email:row.email,mobile:row.mobile,dob:row.dob,doj:row.doj},
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 }

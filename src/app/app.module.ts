@@ -18,12 +18,14 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatTableModule} from "@angular/material/table";
+import { EmployeeEditDialogComponent } from './employee/componets/employee-edit-dialog/employee-edit-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -33,28 +35,31 @@ import {MatTableModule} from "@angular/material/table";
     LoginComponent,
     SideNavComponent,
     TopBarComponent,
-    DashboardComponent
+    DashboardComponent,
+    EmployeeEditDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatListModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatTableModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatSelectModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatListModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatTableModule,
+        MatDialogModule,
+        FormsModule,
+    ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
