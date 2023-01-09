@@ -10,10 +10,18 @@ export class TopBarComponent {
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
 
   constructor(private router: Router) {}
-
-  ngOnInit(): void {}
+user:any
+  ngOnInit(): void {
+    this.user=localStorage.getItem('username')
+  }
 
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
+  }
+
+  logout() {
+    localStorage.removeItem('username')
+    localStorage.removeItem('password')
+    this.router.navigate(['/login']);
   }
 }

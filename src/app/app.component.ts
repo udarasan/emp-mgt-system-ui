@@ -7,9 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'emp-mgt-system-ui';
-  sideBarOpen = true;
 
-  sideBarToggle() {
-    this.sideBarOpen = !this.sideBarOpen;
-  }
 }

@@ -10,12 +10,14 @@
             mat-button
             [matMenuTriggerFor]="menu"
             class="user mt-2 d-flex align-items-center">
-            <img src="./assets/" alt="" class="user-image mr-1 p-2" />
-            User Name
+            <mat-icon>account_circle</mat-icon>
+            {{user}}
             <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item
+            (click)="logout()"
+            >
               <mat-icon>exit_to_app</mat-icon>
               Logout
             </button>
