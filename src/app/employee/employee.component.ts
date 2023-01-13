@@ -8,6 +8,7 @@ import {DepartmentService} from "../services/department.service";
 import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {EmployeeEditDialogComponent} from "./componets/employee-edit-dialog/employee-edit-dialog.component";
+import {AlertComponent} from "../alert/alert.component";
 
 @Component({
   selector: 'app-employee',
@@ -61,13 +62,28 @@ export class EmployeeComponent implements OnInit{
     })
   }
   onSave() {
-    this.employeeService.add(new EmployeeDTO(this.name.value,this.selectedValue,this.email.value,this.mobile.value,this.dob.value,this.city.value,this.doj.value,this.country.value,this.address.value,'DE-ACTIVE')).subscribe((res: any) => {
-      console.log(this.name)
-      if (res.code == '00') {
-      }
-      this.loadTable()
+    if(this.name.value!=null && this.selectedValue!=null && this.email.value!=null &&
+    this.mobile.value!=null && this.dob.value!=null && this.city.value!=null && this.doj.value!=null &&
+    this.country.value!=null && this.address.value!=null){
+      this.employeeService.add(new EmployeeDTO(this.name.value,this.selectedValue,this.email.value,this.mobile.value,this.dob.value,this.city.value,this.doj.value,this.country.value,this.address.value,'DE-ACTIVE')).subscribe((res: any) => {
+        console.log(this.name)
+        if (res.code == '00') {
+        }
+        this.loadTable()
 
-    });
+      });
+    }else {
+      const dialogRef = this.dialog.open(AlertComponent, {
+
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.loadTable();
+
+      });
+    }
+
   }
 
   Edit(row:any) {
