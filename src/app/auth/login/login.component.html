@@ -4,14 +4,30 @@
     <mat-card-title style="text-align:center; margin-top:30px;color:#00759C">User Login</mat-card-title>
         <mat-card-content>
           <form>
+
             <mat-form-field>
-              <input matInput placeholder="User Name" [formControl]="username" >
+              <input type="email" matInput placeholder="Email Address" [formControl]="username" >
               <mat-icon matSuffix style="color: #00759C">email</mat-icon>
+              <mat-error *ngIf="username.hasError('email') && !username.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="username.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
+
+
             <mat-form-field>
               <input matInput placeholder="Password" [formControl]="password">
               <mat-icon matSuffix style="color: #00759C">lock</mat-icon>
+              <mat-error *ngIf="!password.hasError('required')">
+                Please enter a valid password
+              </mat-error>
+              <mat-error *ngIf="password.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
+
             <mat-checkbox>Remember Me!</mat-checkbox>
             <button
               mat-raised-button

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {LoginComponent} from "./login/login.component";
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 
 
 
@@ -11,7 +12,7 @@ import {LoginComponent} from "./login/login.component";
 
   ],
   providers:[
-    LoginComponent
+    LoginComponent,
   ]
 })
 export class AuthModule { }

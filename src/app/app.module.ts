@@ -28,11 +28,20 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import { HomeComponent } from './home/home.component';
 import {AuthModule} from "./auth/auth.module";
+import { ChatComponent } from './chat/chat.component';
+import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
+import { AlertComponent } from './alert/alert.component';
+import { LeaveComponent } from './leave/leave.component';
+import { LeaveAcceptComponent } from './leave/leave-accept/leave-accept.component';
+
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    ChatComponent,
+    AlertComponent,
   ],
     imports: [
         BrowserModule,
@@ -57,7 +66,8 @@ import {AuthModule} from "./auth/auth.module";
         FormsModule,
         MatCheckboxModule,
       DashboardModule,
-      AuthModule
+      AuthModule,
+      SocketIoModule.forRoot(config),
     ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

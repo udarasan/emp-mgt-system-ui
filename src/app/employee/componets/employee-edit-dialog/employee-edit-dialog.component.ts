@@ -7,6 +7,7 @@ import {DepartmentDTO} from "../../../dtos/DepartmentDTO";
 import {EmployeeComponent} from "../../employee.component";
 import {EmployeeDTOList} from "../../../dtos/EmployeeDTOList";
 import {EmployeeDTO} from "../../../dtos/EmployeeDTO";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-employee-edit-dialog',
@@ -15,7 +16,7 @@ import {EmployeeDTO} from "../../../dtos/EmployeeDTO";
 })
 export class EmployeeEditDialogComponent implements OnInit{
 
-  constructor(private employeeService:EmployeeService,private departmentService:DepartmentService,@Inject(MAT_DIALOG_DATA) public data: EmployeeComponent,) {
+  constructor(private employeeService:EmployeeService,private departmentService:DepartmentService,@Inject(MAT_DIALOG_DATA) public data: EmployeeComponent,private router:Router) {
   }
   id=new FormControl();
   name = new FormControl();
@@ -35,12 +36,15 @@ export class EmployeeEditDialogComponent implements OnInit{
   onUpdate() {
     this.employeeService.update(new EmployeeDTO(this.name.value,this.selectedValue,
       this.email.value,this.mobile.value,this.dob.value,this.city.value,
-      this.doj.value,this.country.value,this.address.value),this.data.id).subscribe((res: any) => {
+      this.doj.value,this.country.value,this.address.value,'DE-ACTIVE'),this.data.id).subscribe((res: any) => {
+
       console.log(this.name.value,this.selectedValue)
       if (res.code == '00') {
       }
+      window.location.reload()
 
     });
+
   }
 
   ngOnInit(): void {

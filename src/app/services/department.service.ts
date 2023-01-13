@@ -15,4 +15,7 @@ export class DepartmentService {
   getAll() {
     return this.httpClient.get(this.baseUrl+'findall')
   }
+  countAll() {
+    return this.httpClient.get(this.baseUrl+'count')
+  }
 }

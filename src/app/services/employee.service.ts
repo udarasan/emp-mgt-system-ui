@@ -23,4 +23,7 @@ export class EmployeeService {
   delete(id:String) {
     return this.httpClient.delete(this.baseUrl+'delete/'+id)
   }
+  countAll() {
+    return this.httpClient.get(this.baseUrl+'count')
+  }
 }

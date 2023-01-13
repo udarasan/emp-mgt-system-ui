@@ -1,0 +1,10 @@
+<div class="alert">
+  <h1 mat-dialog-title>Leave Request</h1>
+  <div mat-dialog-content>
+    Please Accept Your Leave Request for user {{data.name}}
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="updateLeave(data)">Accept</button>
+  </div>
+</div>

@@ -28,6 +28,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {HomeComponent} from "../home/home.component";
+import {LeaveComponent} from "../leave/leave.component";
+import {LeaveAcceptComponent} from "../leave/leave-accept/leave-accept.component";
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import {HomeComponent} from "../home/home.component";
     TopBarComponent,
     DashboardComponent,
     HomeComponent,
-    EmployeeEditDialogComponent
+    EmployeeEditDialogComponent,
+    LeaveComponent,
+    LeaveAcceptComponent,
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,7 @@ import {EmployeeEditDialogComponent} from "./componets/employee-edit-dialog/empl
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit{
-  displayedColumns: string[] = [ 'action','name', 'department', 'address','city','country','email','mobile','dob','doj','id'];
+  displayedColumns: string[] = [ 'action','name', 'department', 'address','city','country','email','mobile','dob','doj','status','id'];
   dataSource! :any[];
 
   id=new FormControl();
@@ -61,7 +61,7 @@ export class EmployeeComponent implements OnInit{
     })
   }
   onSave() {
-    this.employeeService.add(new EmployeeDTO(this.name.value,this.selectedValue,this.email.value,this.mobile.value,this.dob.value,this.city.value,this.doj.value,this.country.value,this.address.value)).subscribe((res: any) => {
+    this.employeeService.add(new EmployeeDTO(this.name.value,this.selectedValue,this.email.value,this.mobile.value,this.dob.value,this.city.value,this.doj.value,this.country.value,this.address.value,'DE-ACTIVE')).subscribe((res: any) => {
       console.log(this.name)
       if (res.code == '00') {
       }
@@ -81,6 +81,8 @@ export class EmployeeComponent implements OnInit{
       if (res.code == '00') {
       }
 
+    },error => {
+      alert('error')
     });
   }
 
@@ -92,6 +94,8 @@ export class EmployeeComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.loadTable();
+
     });
   }
 }
