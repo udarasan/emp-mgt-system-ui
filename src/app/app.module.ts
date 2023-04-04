@@ -5,9 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './auth/login/login.component';
-import { SideNavComponent } from './side-nav/side-nav.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
@@ -28,7 +25,6 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import { HomeComponent } from './home/home.component';
 import {AuthModule} from "./auth/auth.module";
-import { ChatComponent } from './chat/chat.component';
 import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
 import { AlertComponent } from './alert/alert.component';
 import { LeaveComponent } from './leave/leave.component';
@@ -40,7 +36,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
   declarations: [
     AppComponent,
     LoginComponent,
-    ChatComponent,
     AlertComponent,
   ],
     imports: [

@@ -9,6 +9,8 @@ import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {EmployeeEditDialogComponent} from "./componets/employee-edit-dialog/employee-edit-dialog.component";
 import {AlertComponent} from "../alert/alert.component";
+import {GameDTO} from "../dtos/GameDTO";
+import {EventDTO} from "../dtos/EventDTO";
 
 @Component({
   selector: 'app-employee',
@@ -16,24 +18,26 @@ import {AlertComponent} from "../alert/alert.component";
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit{
-  displayedColumns: string[] = [ 'action','name', 'department', 'address','city','country','email','mobile','dob','doj','status','id'];
+  displayedColumns: string[] = [ 'eventId','gameId', 'eventType','isPaid' ,'eventName','startTime','endTime','country','location','organizer','description','eventImage'];
   dataSource! :any[];
 
   id=new FormControl();
-  name = new FormControl();
+  eventName = new FormControl();
+  isPaid!:string;
   department= new FormControl();
-  email= new FormControl();
-  mobile= new FormControl();
-  dob= new FormControl();
-  city= new FormControl();
-  doj= new FormControl();
+  organizer= new FormControl();
+  eventType= new FormControl();
+  startTime= new FormControl();
+  endTime= new FormControl();
   country= new FormControl();
-  address= new FormControl();
-
-  departments!:DepartmentDTO[];
+  description= new FormControl();
+  location= new FormControl();
+  eventImage= new FormControl();
+  games!:GameDTO[];
   employees!:EmployeeDTOList[];
 
-  selectedValue!: String;
+  gameId!: number;
+
   constructor(private employeeService:EmployeeService,private departmentService:DepartmentService,public dialog: MatDialog) {
   }
 
@@ -47,27 +51,28 @@ export class EmployeeComponent implements OnInit{
     })
     this.departmentService.getAll().subscribe((res:any)=>{
       if (res!=null){
-        this.departments=res
+        this.games=res.data
       }
-      console.log(this.departments)
+      console.log(this.games)
     })
   }
   public loadTable(): void {
     // console.log(stateFilter);
     this.employeeService.getAll().subscribe((res:any)=>{
       if (res!=null){
-        this.dataSource=res
+        console.log(res)
+        this.dataSource=res.data
       }
-      console.log(this.employees)
     })
   }
   onSave() {
-    if(this.name.value!=null && this.selectedValue!=null && this.email.value!=null &&
-    this.mobile.value!=null && this.dob.value!=null && this.city.value!=null && this.doj.value!=null &&
-    this.country.value!=null && this.address.value!=null){
-      this.employeeService.add(new EmployeeDTO(this.name.value,this.selectedValue,this.email.value,this.mobile.value,this.dob.value,this.city.value,this.doj.value,this.country.value,this.address.value,'DE-ACTIVE')).subscribe((res: any) => {
-        console.log(this.name)
-        if (res.code == '00') {
+    if(this.gameId!=null && this.eventType.value!=null && this.isPaid!=null &&
+    this.eventName.value!=null && this.startTime.value!=null && this.endTime.value!=null && this.country.value!=null &&
+    this.location.value!=null && this.organizer.value!=null && this.description.value!=null && this.eventImage.value!=null)
+    {
+      this.employeeService.add(new EventDTO(0,this.gameId,this.eventType.value,this.isPaid,this.eventName.value,this.startTime.value,this.endTime.value,this.country.value,this.location.value,this.organizer.value,this.description.value,this.eventImage.value)).subscribe((res: any) => {
+        console.log(this.eventName)
+        if (res.code == '201') {
         }
         this.loadTable()
 
@@ -92,7 +97,7 @@ export class EmployeeComponent implements OnInit{
   Delete(row:any) {
 
     this.employeeService.delete(row._id).subscribe((res: any) => {
-      console.log(this.name)
+      console.log(this.eventName)
       this.loadTable();
       if (res.code == '00') {
       }

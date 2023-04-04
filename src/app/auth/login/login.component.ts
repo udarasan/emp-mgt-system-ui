@@ -16,19 +16,20 @@ import {AlertComponent} from "../../alert/alert.component";
 })
 export class LoginComponent {
 
-  username= new FormControl('', [Validators.required, Validators.email]);
+  username= new FormControl('', [Validators.required]);
   password=new FormControl('', [Validators.required]);
 
   constructor(private authservice:LoginService,private router: Router,public dialog: MatDialog) {
   }
   login() {
+    console.log(this.username.value,this.password.value)
     if (this.username.value!='' && this.password.value!=''){
-      this.authservice.loginCheck(this.username.value!).subscribe((res: any) => {
+      this.authservice.getLoginAccess(this.username.value,this.password.value).subscribe((res: any) => {
         if (res!=null) {
           console.log("23")
-          if (res.username==this.username.value && res.password==this.password.value){
-            localStorage.setItem('username',res.username)
-            localStorage.setItem('password',res.password)
+          if (res.data.token!=null){
+            localStorage.setItem('username',res.data.username)
+            localStorage.setItem('token',res.data.token)
             console.log("yes")
 
             this.router.navigate(['/home']);

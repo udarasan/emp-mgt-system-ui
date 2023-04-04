@@ -1,70 +1,122 @@
 <div class="p-3">
   <div>
-    <h1>Employee Section</h1>
+    <h1>Event Management Section</h1>
   </div>
   <form>
     <div class="row">
-      <div class="col-3">
-        <mat-form-field appearance="outline" class="formsize">
-          <mat-label>Employee Name</mat-label>
-          <input matInput placeholder="Name" [formControl]="name">
-          <mat-hint></mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="formsize">
-          <mat-label>Employee Mobile No</mat-label>
-          <input matInput placeholder="Name" [formControl]="mobile">
-          <mat-hint></mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="formsize">
-          <mat-label>City</mat-label>
-          <input matInput placeholder="Name" [formControl]="city">
-          <mat-hint></mat-hint>
-        </mat-form-field>
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>Event Name</mat-label>
+            <input matInput placeholder="eventName" [formControl]="eventName">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>Event Type</mat-label>
+            <input matInput placeholder="Name" [formControl]="eventType">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>country</mat-label>
+            <input matInput placeholder="Name" [formControl]="country">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="col-3">
-        <mat-form-field appearance="outline" class="formsize">
-          <mat-label>Select Department</mat-label>
-          <mat-select [(ngModel)]="selectedValue" name="department">
-            <mat-option *ngFor="let department of departments" [value]="department.name">
-              {{department.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="formsize">
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="pickers" [formControl]="dob">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="pickers">
-            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-          </mat-datepicker-toggle>
-          <mat-datepicker #pickers></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="formsize">
-          <mat-label>Country</mat-label>
-          <input matInput placeholder="Name" [formControl]="country">
-          <mat-hint></mat-hint>
-        </mat-form-field>
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>Select Game</mat-label>
+            <mat-select [(ngModel)]="gameId" name="department">
+              <mat-option *ngFor="let game of games" [value]="game.gameID">
+                {{game.gameName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>Starting Date</mat-label>
+            <input matInput [matDatepicker]="pickers" [formControl]="startTime">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="pickers">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #pickers></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>Location</mat-label>
+            <input matInput placeholder="Name" [formControl]="location">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="col-3">
-        <mat-form-field appearance="outline" class="formsize">
-          <mat-label>Employee Email</mat-label>
-          <input matInput placeholder="Name" [formControl]="email">
-          <mat-hint></mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="formsize">
-          <mat-label>Employee Address</mat-label>
-          <input matInput placeholder="Name" [formControl]="address">
-          <mat-hint></mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="formsize">
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker" [formControl]="doj">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker">
-            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-          </mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>Organizer</mat-label>
+            <input matInput placeholder="Name" [formControl]="organizer">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="endTime">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>Event image</mat-label>
+            <input matInput placeholder="Name" [formControl]="eventImage">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Name" [formControl]="description">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+
+        <!--  <mat-form-field appearance="outline" class="formsize">
+            <mat-label>IsPaid</mat-label>
+            <input matInput placeholder="Name" [formControl]="isPaid">
+            <mat-hint></mat-hint>
+          </mat-form-field>-->
+
+
+
+          <mat-form-field appearance="outline" class="formsize">
+            <mat-label>Select an option</mat-label>
+            <mat-select [(value)]="isPaid">
+              <mat-option value="YES">YES</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+        </div>
       </div>
     </div>
 
@@ -91,27 +143,47 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name</th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <ng-container matColumnDef="eventId">
+        <th mat-header-cell *matHeaderCellDef> Event ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.eventId}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="department">
-        <th mat-header-cell *matHeaderCellDef> Department</th>
-        <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+      <ng-container matColumnDef="gameId">
+        <th mat-header-cell *matHeaderCellDef> Game ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.gameId.gameName}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="address">
-        <th mat-header-cell *matHeaderCellDef> Address</th>
+      <ng-container matColumnDef="eventType">
+        <th mat-header-cell *matHeaderCellDef> event Type</th>
         <td mat-cell *matCellDef="let element">
-          {{element.address}}
+          {{element.eventType}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="isPaid">
+        <th mat-header-cell *matHeaderCellDef> IsPaid</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.isPaid}}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="city">
-        <th mat-header-cell *matHeaderCellDef> City</th>
+      <ng-container matColumnDef="eventName">
+        <th mat-header-cell *matHeaderCellDef> Event Name</th>
         <td mat-cell *matCellDef="let element">
-          {{element.city}}
+          {{element.eventName}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startTime">
+        <th mat-header-cell *matHeaderCellDef> Start Time</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.startTime}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="endTime">
+        <th mat-header-cell *matHeaderCellDef> End Time</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.endTime}}
         </td>
       </ng-container>
 
@@ -122,44 +194,30 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email</th>
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Location</th>
         <td mat-cell *matCellDef="let element">
-          {{element.email}}
+          {{element.location}}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="mobile">
-        <th mat-header-cell *matHeaderCellDef> Mobile</th>
+      <ng-container matColumnDef="organizer">
+        <th mat-header-cell *matHeaderCellDef>Organizer</th>
         <td mat-cell *matCellDef="let element">
-          {{element.mobile}}
+          {{element.organizer}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.description}}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="dob">
-        <th mat-header-cell *matHeaderCellDef> Date Of Birth</th>
+      <ng-container matColumnDef="eventImage">
+        <th mat-header-cell *matHeaderCellDef> Event Image</th>
         <td mat-cell *matCellDef="let element">
-          {{element.dob}}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="doj">
-        <th mat-header-cell *matHeaderCellDef> Date Of Join</th>
-        <td mat-cell *matCellDef="let element">
-          {{element.doj}}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Leave Status</th>
-        <td mat-cell *matCellDef="let element">
-          {{element.status}}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID</th>
-        <td mat-cell *matCellDef="let element">
-          {{element._id}}
+          {{element.eventImage}}
         </td>
       </ng-container>
 
