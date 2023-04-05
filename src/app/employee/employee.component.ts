@@ -18,7 +18,7 @@ import {EventDTO} from "../dtos/EventDTO";
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit{
-  displayedColumns: string[] = [ 'eventId','gameId', 'eventType','isPaid' ,'eventName','startTime','endTime','country','location','organizer','description','eventImage'];
+  displayedColumns: string[] = [ 'eventId','gameId', 'eventType','isPaid' ,'payment','eventName','startTime','endTime','country','location','organizer','description','eventImage'];
   dataSource! :any[];
 
   id=new FormControl();
@@ -37,6 +37,7 @@ export class EmployeeComponent implements OnInit{
   employees!:EmployeeDTOList[];
 
   gameId!: number;
+  payment=new FormControl();
 
   constructor(private employeeService:EmployeeService,private departmentService:DepartmentService,public dialog: MatDialog) {
   }
@@ -66,11 +67,11 @@ export class EmployeeComponent implements OnInit{
     })
   }
   onSave() {
-    if(this.gameId!=null && this.eventType.value!=null && this.isPaid!=null &&
+    if(this.gameId!=null && this.eventType.value!=null && this.isPaid!=null && this.payment!=null &&
     this.eventName.value!=null && this.startTime.value!=null && this.endTime.value!=null && this.country.value!=null &&
     this.location.value!=null && this.organizer.value!=null && this.description.value!=null && this.eventImage.value!=null)
     {
-      this.employeeService.add(new EventDTO(0,this.gameId,this.eventType.value,this.isPaid,this.eventName.value,this.startTime.value,this.endTime.value,this.country.value,this.location.value,this.organizer.value,this.description.value,this.eventImage.value)).subscribe((res: any) => {
+      this.employeeService.add(new EventDTO(0,this.gameId,this.eventType.value,this.isPaid,this.payment.value,this.eventName.value,this.startTime.value,this.endTime.value,this.country.value,this.location.value,this.organizer.value,this.description.value,this.eventImage.value)).subscribe((res: any) => {
         console.log(this.eventName)
         if (res.code == '201') {
         }
