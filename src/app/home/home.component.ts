@@ -11,6 +11,9 @@ export class
 HomeComponent implements OnInit{
   empcount: any;
   depcount: any;
+  teamsCount: any;
+  displayedColumns: string[] = [ 'aids','dates', 'functions','messages'];
+  dataSource! :any[];
 
   constructor(private employeeService:EmployeeService,private departmentService:DepartmentService) {
   }
@@ -18,18 +21,19 @@ HomeComponent implements OnInit{
   ngOnInit(): void {
     this.employeeService.countAll().subscribe((res: any) => {
 
-      this.empcount=res;
+      this.empcount=res.data.player;
+      this.depcount=res.data.event;
+      this.teamsCount=res.data.team;
       if (res.code == '00') {
       }
 
     });
-    this.departmentService.countAll().subscribe((res: any) => {
+    this.employeeService.getAllAudits().subscribe((res: any) => {
 
-      this.depcount=res;
-      if (res.code == '00') {
-      }
+      this.dataSource=res.data;
 
     });
+
   }
 
 }

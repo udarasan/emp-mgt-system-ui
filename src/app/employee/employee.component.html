@@ -87,11 +87,8 @@
 
       <div class="row">
         <div class="col-4">
-          <mat-form-field appearance="outline" class="formsize">
-            <mat-label>Event image</mat-label>
-            <input matInput placeholder="Name" [formControl]="eventImage">
-            <mat-hint></mat-hint>
-          </mat-form-field>
+            <input type="file" (change)="onFileSelected($event)" class="pb-2"/>
+            <button class="btn bg-primary text-light" (click)="uploadImage()">Upload Image</button>
         </div>
         <div class="col-4">
 
@@ -106,8 +103,8 @@
           <mat-form-field appearance="outline" class="formsize">
             <mat-label>Select an option</mat-label>
             <mat-select [(value)]="isPaid">
-              <mat-option value="YES">YES</mat-option>
-              <mat-option value="NO">NO</mat-option>
+              <mat-option value="true">YES</mat-option>
+              <mat-option value="false">NO</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -115,9 +112,9 @@
         </div>
       </div>
     </div>
-
+<hr>
     <div class="col-auto">
-      <button mat-raised-button color="primary" (click)="onSave()">Add Employee</button>
+      <button mat-raised-button color="primary" [disabled]="buttonEvent" (click)="onSave()">Add Event</button>
     </div>
 
   </form>

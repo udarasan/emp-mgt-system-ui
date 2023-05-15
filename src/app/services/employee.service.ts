@@ -10,6 +10,9 @@ import {EventDTO} from "../dtos/EventDTO";
 export class EmployeeService {
 
   baseUrl="http://localhost:8080/api/v1/event/";
+  baseUrl1="http://localhost:8080/api/v1/team/";
+  baseUrl2="http://localhost:8080/api/v1/user/";
+  baseUrl4="http://localhost:8080/api/v1/audit/";
   constructor(private httpClient:HttpClient) { }
   add(eventDTO:EventDTO){
     return this.httpClient.post(this.baseUrl+"add",eventDTO,{
@@ -33,6 +36,33 @@ export class EmployeeService {
     return this.httpClient.delete(this.baseUrl+'delete/'+id)
   }
   countAll() {
-    return this.httpClient.get(this.baseUrl+'count')
+    return this.httpClient.get(this.baseUrl+'count',{
+      headers:new HttpHeaders({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      })
+    })
+  }
+
+  getAllTeams() {
+    return this.httpClient.get(this.baseUrl1+'getAllTeams',{
+      headers:new HttpHeaders({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      })
+    })
+  }
+  getAllPlayerUsers() {
+    return this.httpClient.get(this.baseUrl2+'getAllPayerUsers',{
+      headers:new HttpHeaders({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      })
+    })
+  }
+
+  getAllAudits() {
+    return this.httpClient.get(this.baseUrl4+'getAllAudits',{
+      headers:new HttpHeaders({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      })
+    })
   }
 }

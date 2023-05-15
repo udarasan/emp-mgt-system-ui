@@ -13,7 +13,7 @@ import {LeaveAcceptComponent} from "./leave-accept/leave-accept.component";
   styleUrls: ['./leave.component.scss']
 })
 export class LeaveComponent implements OnInit{
-  displayedColumns: string[] = [ 'action','name', 'department', 'address','city','country','email','mobile','dob','doj','status','id'];
+  displayedColumns: string[] = ['teamId', 'teamName', 'description','country'];
   dataSource! :any[];
   departments!:DepartmentDTO[];
   employees!:EmployeeDTOList[];
@@ -37,9 +37,9 @@ export class LeaveComponent implements OnInit{
   }
   public loadTable(): void {
     // console.log(stateFilter);
-    this.employeeService.getAll().subscribe((res:any)=>{
+    this.employeeService.getAllTeams().subscribe((res:any)=>{
       if (res!=null){
-        this.dataSource=res
+        this.dataSource=res.data
       }
       console.log(this.employees)
     })

@@ -11,6 +11,7 @@ import {EmployeeEditDialogComponent} from "./componets/employee-edit-dialog/empl
 import {AlertComponent} from "../alert/alert.component";
 import {GameDTO} from "../dtos/GameDTO";
 import {EventDTO} from "../dtos/EventDTO";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-employee',
@@ -20,6 +21,7 @@ import {EventDTO} from "../dtos/EventDTO";
 export class EmployeeComponent implements OnInit{
   displayedColumns: string[] = [ 'eventId','gameId', 'eventType','isPaid' ,'payment','eventName','startTime','endTime','country','location','organizer','description','eventImage'];
   dataSource! :any[];
+  selectedImage: File | undefined;
 
   id=new FormControl();
   eventName = new FormControl();
@@ -32,14 +34,15 @@ export class EmployeeComponent implements OnInit{
   country= new FormControl();
   description= new FormControl();
   location= new FormControl();
-  eventImage= new FormControl();
+  eventImage:any
   games!:GameDTO[];
   employees!:EmployeeDTOList[];
 
   gameId!: number;
   payment=new FormControl();
+  buttonEvent= true ;
 
-  constructor(private employeeService:EmployeeService,private departmentService:DepartmentService,public dialog: MatDialog) {
+  constructor(private employeeService:EmployeeService,private departmentService:DepartmentService,public dialog: MatDialog,private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -69,9 +72,9 @@ export class EmployeeComponent implements OnInit{
   onSave() {
     if(this.gameId!=null && this.eventType.value!=null && this.isPaid!=null && this.payment!=null &&
     this.eventName.value!=null && this.startTime.value!=null && this.endTime.value!=null && this.country.value!=null &&
-    this.location.value!=null && this.organizer.value!=null && this.description.value!=null && this.eventImage.value!=null)
+    this.location.value!=null && this.organizer.value!=null && this.description.value!=null && this.eventImage!=null)
     {
-      this.employeeService.add(new EventDTO(0,this.gameId,this.eventType.value,this.isPaid,this.payment.value,this.eventName.value,this.startTime.value,this.endTime.value,this.country.value,this.location.value,this.organizer.value,this.description.value,this.eventImage.value)).subscribe((res: any) => {
+      this.employeeService.add(new EventDTO(0,this.gameId,this.eventType.value,this.isPaid,this.payment.value,this.eventName.value,this.startTime.value,this.endTime.value,this.country.value,this.location.value,this.organizer.value,this.description.value,this.eventImage)).subscribe((res: any) => {
         console.log(this.eventName)
         if (res.code == '201') {
         }
@@ -119,5 +122,34 @@ export class EmployeeComponent implements OnInit{
       this.loadTable();
 
     });
+  }
+  uploadImage(): void {
+    if (this.selectedImage) {
+      const formData = new FormData();
+      formData.append('files', this.selectedImage);
+
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      });
+
+      this.http.post('http://localhost:8080/api/v1/event/upload', formData, { headers }).subscribe(
+        (response) => {
+          // Image upload success
+          console.log(response);
+          this.buttonEvent=false;
+          alert("Image Uploaded!")
+        },
+        (error) => {
+          // Handle error
+          console.error(error);
+          alert("Image Uploaded Error!")
+        }
+      );
+    }
+  }
+  onFileSelected(event: any): void {
+    this.selectedImage = event.target.files[0];
+    console.log(this.selectedImage?.name)
+    this.eventImage=this.selectedImage?.name
   }
 }

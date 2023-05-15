@@ -29,6 +29,7 @@ import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
 import { AlertComponent } from './alert/alert.component';
 import { LeaveComponent } from './leave/leave.component';
 import { LeaveAcceptComponent } from './leave/leave-accept/leave-accept.component';
+import { UserComponent } from './user/user.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
 
@@ -37,6 +38,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
     AppComponent,
     LoginComponent,
     AlertComponent,
+    UserComponent,
   ],
     imports: [
         BrowserModule,

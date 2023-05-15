@@ -1,19 +1,39 @@
 <div class="p-3">
   <div>
-    <h1>Departments</h1>
+    <h1>Games</h1>
   </div>
-  <form class="row g-3">
+  <form class="row ">
+    <div class="col-6">
+      <mat-form-field appearance="outline" class="input-d">
+        <mat-label>Game Name</mat-label>
+        <input matInput [formControl]="name">
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+
+    <input type="file" (change)="onFileSelected($event)" />
+    <button class="btn bg-primary text-light" (click)="uploadImage()">Upload Image</button>
+
+    </div>
+    <!--<div class="col-auto">
+      <mat-form-field appearance="outline" class="input-d">
+        <mat-label>Image URL</mat-label>
+        <input matInput [formControl]="imageUrl">
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </div>-->
     <div class="col-auto">
       <mat-form-field appearance="outline" class="input-d">
-        <mat-label>Category Name</mat-label>
-        <input matInput placeholder="Name" [formControl]="name">
+        <mat-label>Description</mat-label>
+        <input matInput  [formControl]="description">
         <mat-hint></mat-hint>
       </mat-form-field>
     </div>
 
   </form>
   <div class="col-auto">
-    <button mat-raised-button color="primary" (click)="onSave()">Add Department</button>
+    <button mat-raised-button color="primary" [disabled]="buttonEvent" (click)="onSave()">Add New Game</button>
   </div>
   <div class="table-are">
 
@@ -34,13 +54,22 @@
   <!--      </ng-container>-->
 
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Department</th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
+
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID</th>
-        <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.gameID}} </td>
+      </ng-container>
+      <ng-container matColumnDef="imageUrl">
+        <th mat-header-cell *matHeaderCellDef> Image</th>
+        <td mat-cell *matCellDef="let element"> {{element.imageUrl}} </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name of Game</th>
+        <td mat-cell *matCellDef="let element"> {{element.gameName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description</th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
